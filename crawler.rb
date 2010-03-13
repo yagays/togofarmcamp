@@ -12,7 +12,7 @@ def crawler(doc)
 
   #date
   (doc/'h2 span.date').each_with_index {|elem,i| 
-    dateArray[i] =  elem.inner_text.gsub(/\s+/, "")
+    dateArray << elem.inner_text.gsub(/\s+/, "")
   }
 
   #title
