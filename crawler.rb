@@ -8,7 +8,7 @@ require 'csv'
 def crawler(doc)
   #Hash initialization
   dateArray = Array.new
-  dbHash = Hash.new
+  dbHash = Hash.new{|dbHash,key|dbHash[key] = []}
 
   #date
   (doc/'h2 span.date').each_with_index {|elem,i| 
@@ -19,8 +19,8 @@ def crawler(doc)
   (doc/'h3').each_with_index {|elem,i| 
     title = elem.inner_text.toutf8.strip#delete("\n").delete("\t")#.gsub(/\s+/, "")   #行頭のスペースが取れない
     if title[0,1] == "_"
-      dbHash[dateArray[i-3]] = title.gsub(/\[.*?\]/, "").delete("_")
-#      dbHash[dataArray[i-3]] << "http://togotv.dbcls.jp/" + dataArray[i].delete("_") + ".html#p1"
+      dbHash[dateArray[i-3]] << title.gsub(/\[.*?\]/, "").delete("_")
+      dbHash[dateArray[i-3]] << "http://togotv.dbcls.jp/" + dateArray[i-3].delete("-") + ".html#p1"
     end
   }
 
