@@ -3,22 +3,25 @@ require 'rubygems'
 require 'hpricot'
 require 'open-uri'
 require 'kconv'
+require 'csv'
+
 
 doc = Hpricot(open("/Users/yag_ays/togofarmcamp/togotv.html"))
 
 
 #matrix
-#e.g. [[date, title],[date, title]]
+#e.g. [[date, title],[date, title]...]
 def nmarray(n,m)
   (0...n).map{Array.new(m)}
 end
-db = nmarray(15,2)
+db = nmarray(15,3)
 
 
 #date
 (doc/'h2 span.date').each_with_index {|elem,i| 
  date =  elem.inner_text.gsub(/\s+/, "")
  db[i][0] = date
+ db[i][2] = "http://togotv.dbcls.jp/" + date.delete("-") + ".html"
 }
 
 
@@ -29,9 +32,13 @@ db = nmarray(15,2)
    db[i-3][1] = title.gsub(/\[.*?\]/, "").delete("_")
   end
 }
-puts db
-p db
+#puts db
+#p db
 
 
 
-
+CSV.generate("output.csv", ?,){|writer|
+  db.each{|elem|
+   writer << elem
+  }
+}
