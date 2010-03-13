@@ -17,7 +17,7 @@ def crawler(doc)
 
   #title
   (doc/'h3').each_with_index {|elem,i| 
-    title = elem.inner_text.toutf8.strip#delete("\n").delete("\t")#.gsub(/\s+/, "")   #行頭のスペースが取れない
+    title = elem.inner_text.toutf8.strip
     if title[0,1] == "_"
       dbHash[dateArray[i-3]] << title.gsub(/\[.*?\]/, "").delete("_")
       dbHash[dateArray[i-3]] << "http://togotv.dbcls.jp/" + dateArray[i-3].delete("-") + ".html#p1"
@@ -33,6 +33,7 @@ def checkHash(hash)
   }
 end
 
+#上を書き換えたのでcsvに吐き出す方法を変更する必要がある
 def csvoutput(list)
   output = list.to_a
   puts output
