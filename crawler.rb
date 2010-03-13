@@ -12,8 +12,7 @@ def crawler(doc)
 
   #date
   (doc/'h2 span.date').each_with_index {|elem,i| 
-    date =  elem.inner_text.gsub(/\s+/, "")
-    dateArray[i] = date
+    dateArray[i] =  elem.inner_text.gsub(/\s+/, "")
   }
 
   #title
@@ -21,6 +20,7 @@ def crawler(doc)
     title = elem.inner_text.toutf8.strip#delete("\n").delete("\t")#.gsub(/\s+/, "")   #行頭のスペースが取れない
     if title[0,1] == "_"
       dbHash[dateArray[i-3]] = title.gsub(/\[.*?\]/, "").delete("_")
+#      dbHash[dataArray[i-3]] << "http://togotv.dbcls.jp/" + dataArray[i].delete("_") + ".html#p1"
     end
   }
 
