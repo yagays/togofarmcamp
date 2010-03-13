@@ -7,7 +7,8 @@ require 'kconv'
 doc = Hpricot(open("/Users/yag_ays/togofarmcamp/togotv.html"))
 
 
-#多次元配列作成
+#matrix
+#e.g. [[date, title],[date, title]]
 def nmarray(n,m)
   (0...n).map{Array.new(m)}
 end
@@ -21,7 +22,7 @@ db = nmarray(15,2)
 }
 
 
-
+#title
 (doc/'h3').each_with_index {|elem,i| 
  title = elem.inner_text.toutf8.strip#delete("\n").delete("\t")#.gsub(/\s+/, "")   #行頭のスペースが取れない
   if title[0,1] == "_"
@@ -33,4 +34,4 @@ p db
 
 
 
-#  puts /\[.*?\]/ =~ hoge
+
