@@ -63,9 +63,9 @@ def csvdiff(old,new)
    insert <<  newelem
   end
   }
-
+  #
   add = Array.new
-  sortinsert = insert.sort{|a,b| a[0].to_i <=> b[0].to_i}
+  sortinsert = insert.sort{|a,b| a[0].delete("-").to_i <=> b[0].delete("-").to_i}
   sortinsert.each_with_index{|elem,i|
     add << [(oldid.max+i+1).to_s, elem[0],elem[1][0],elem[1][1]]
   }
