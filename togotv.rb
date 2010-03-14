@@ -16,5 +16,13 @@ list = crawler(doc)
 #checkHash(list)
 #csvoutput(list)
 
+#pp list.to_a
+#pp csvinput(csv)
 
-pp csvinput(csv)
+#test data
+list["2010-03-20"] = ["test title", "test url"]
+list["2010-03-22"] = ["test title2", "test url2"]
+#pp list.to_a
+
+#arrayで入れる
+p csvdiff(csvinput(csv),list.to_a)

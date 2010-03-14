@@ -51,8 +51,42 @@ end
 
 def csvinput(csv)
   tmp = Array.new
-  CSV.parse(csv){|row|
+  CSV.open(csv,"r"){|row|
    tmp << row.to_a
   }
   return tmp
+end
+
+def csvdiff(old,new)
+  #oldのidのmaxを求める
+  oldid = Array.new
+  old.each_with_index{|elem,i|
+   if i != 0
+#    xx  ? yy : zz
+    oldid << elem[0].to_i
+   end
+  }
+# p oldid.max
+
+#  pp new[0]
+#  pp new[0][0]
+#  pp old[1]
+#  pp old[1][1]
+
+  insert = Array.new
+  #diff判定
+
+  new.each{|newelem|
+     status = 1
+     old.each{|oldelem|
+      if newelem[0].delete("-").to_i <= oldelem[1].delete("-").to_i
+       status = 0
+      end
+     }
+  if status == 1
+   insert <<  newelem
+  end
+  pp status
+  }
+  return insert
 end
