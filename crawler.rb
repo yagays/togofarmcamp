@@ -80,7 +80,7 @@ def csvoutput(base, new)
   }
 
   CSV.open("output.csv", "w") {|writer|
-    writer << ["ID","作成日","動画タイトル","URL"]
+    writer << ["動画ID","作成日","動画タイトル","URL"]
     base.each{|elem|
       writer << elem
     }

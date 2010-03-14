@@ -10,7 +10,7 @@ require 'pp'
 doc = Hpricot(open("/Users/yag_ays/togofarmcamp/togotv.html"))
 csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
 
-#実行部分
+
 hash = crawler(doc)
 
 #making test data
