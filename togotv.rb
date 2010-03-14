@@ -8,13 +8,15 @@ require 'crawler'
 require 'pp'
 
 doc = Hpricot(open("/Users/yag_ays/togofarmcamp/togotv.html"))
-csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
+#doc = Hpricot(open("http://togotv.dbcls.jp/"))
 
+csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
+#after the second tiem, use output.csv
 
 hash = crawler(doc)
 
 #making test data
-hash["2010-03-20"] = ["  test title", "test url"]
+#hash["2010-02-28"] = ["  test title", "test url"] # before the latest diary date, it didn't work , LOL
 hash["2010-03-22"] = ["  test title", "test url"]
 hash["2010-03-21"] = ["  test title", "test url"]
 hash["2010-03-28"] = ["  test title", "test url"]
