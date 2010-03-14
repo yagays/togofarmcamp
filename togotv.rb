@@ -9,6 +9,12 @@ require 'pp'
 
 doc = Hpricot(open("/Users/yag_ays/togofarmcamp/togotv.html"))
 
+csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
+
+
 list = crawler(doc)
 #checkHash(list)
-csvoutput(list)
+#csvoutput(list)
+
+
+pp csvinput(csv)

@@ -48,3 +48,11 @@ CSV.generate("output.csv", ?,){|writer|
   }
 }
 end
+
+def csvinput(csv)
+  tmp = Array.new
+  CSV.parse(csv){|row|
+   tmp << row.to_a
+  }
+  return tmp
+end
