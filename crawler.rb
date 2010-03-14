@@ -36,10 +36,15 @@ end
 #上を書き換えたのでcsvに吐き出す方法を変更する必要がある
 def csvoutput(list)
   output = list.to_a
-  puts output
-  CSV.generate("output.csv", ?,){|writer|
-    output.each{|elem|
-      writer << elem
-    }
+
+CSV.generate("output.csv", ?,){|writer|
+  writer << ["作成日","動画タイトル","URL"]
+  output.each{|elem|
+#     pp elem
+#     pp elem[0]
+#     pp elem[1][0]
+#     pp elem[1][1]
+    writer << [elem[0], elem[1][0], elem[1][1]]
   }
+}
 end
