@@ -12,17 +12,17 @@ doc = Hpricot(open("/Users/yag_ays/togofarmcamp/togotv.html"))
 csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
 
 
-list = crawler(doc)
-#checkHash(list)
-#csvoutput(list)
+hash = crawler(doc)
+checkHash(hash)
+#csvoutput(hash)
 
-#pp list.to_a
+#pp hash.to_a
 #pp csvinput(csv)
 
 #test data
-list["2010-03-20"] = ["test title", "test url"]
-list["2010-03-22"] = ["test title2", "test url2"]
-#pp list.to_a
+hash["2010-03-20"] = ["test title", "test url"]
+hash["2010-03-22"] = ["test title2", "test url2"]
+#pp hash.to_a
 
 #arrayで入れる
-p csvdiff(csvinput(csv),list.to_a)
+p csvdiff(csvinput(csv),hash.to_a)
