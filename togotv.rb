@@ -16,7 +16,7 @@ csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
 hash = crawler(doc)
 
 #making test data
-#hash["2010-02-28"] = ["  test title", "test url"] # before the latest diary date, it didn't work , LOL
+hash["2010-02-28"] = ["  test title", "test url"] # before the latest diary date, it didn't work , LOL
 hash["2010-03-22"] = ["  test title", "test url"]
 hash["2010-03-21"] = ["  test title", "test url"]
 hash["2010-03-28"] = ["  test title", "test url"]
@@ -29,6 +29,7 @@ hash["2010-05-15"] = ["  test title", "test url"]
 
 add = csvdiff(csvinput(csv),hash.to_a)
 
+#add.empty?とかのほうが良い
 if add != []
  csvoutput(csvinput(csv), add)
  puts "output.csv is updated."

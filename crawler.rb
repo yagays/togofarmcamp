@@ -23,7 +23,6 @@ def crawler(doc)
       dbHash[dateArray[i-3]] << "http://togotv.dbcls.jp/" + dateArray[i-3].delete("-") + ".html#p1"
     end
   }
-
   return dbHash
 end
 
@@ -41,7 +40,8 @@ def csvinput(csv)
   return tmp
 end
 
-def csvdiff(old,new)
+
+def csvdiff(old,ins)
   #making array of old ID
   oldid = Array.new
   old.each_with_index{|elem,i|
@@ -49,10 +49,13 @@ def csvdiff(old,new)
     oldid << elem[0].to_i
    end
   }
-
+#  pp new
+#  pp old
+#  p oldid
+ 
   #diff
   insert = Array.new
-  new.each{|newelem|
+  ins.each{|newelem|
      status = 1
      old.each{|oldelem|
       if newelem[0].delete("-").to_i <= oldelem[1].delete("-").to_i
@@ -74,8 +77,8 @@ end
 
 
 
-def csvoutput(base, new)
-  new.each{|elem|
+def csvoutput(base, add)
+  add.each{|elem|
    base << elem
   }
 
