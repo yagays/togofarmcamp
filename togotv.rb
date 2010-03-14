@@ -30,7 +30,7 @@ hash["2010-05-15"] = ["  test title", "test url"]
 add = csvdiff(csvinput(csv),hash.to_a)
 
 #add.empty?とかのほうが良い
-if add != []
+if !add.empty?
  csvoutput(csvinput(csv), add)
  puts "output.csv is updated."
  checkHash(hash)
