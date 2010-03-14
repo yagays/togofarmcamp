@@ -14,16 +14,15 @@ csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
 hash = crawler(doc)
 
 #making test data
-hash["2010-03-20"] = ["  test title20", "test url20"]
-hash["2010-03-22"] = ["  test title22", "test url22"]
-hash["2010-03-21"] = ["  test title21", "test url21"]
-hash["2010-03-28"] = ["  test title22", "test url22"]
-hash["2010-03-27"] = ["  test title22", "test url22"]
-hash["2010-03-23"] = ["  test title21", "test url21"]
-hash["2010-04-12"] = ["  test title22", "test url22"]
-hash["2010-05-15"] = ["  test title21", "test url21"]
-
-
+hash["2010-03-20"] = ["  test title", "test url"]
+hash["2010-03-22"] = ["  test title", "test url"]
+hash["2010-03-21"] = ["  test title", "test url"]
+hash["2010-03-28"] = ["  test title", "test url"]
+hash["2010-03-27"] = ["  test title", "test url"]
+hash["2010-03-23"] = ["  test title", "test url"]
+hash["2010-04-12"] = ["  test title", "test url"]
+hash["2010-05-15"] = ["  test title", "test url"]
+#end
 
 
 add = csvdiff(csvinput(csv),hash.to_a)

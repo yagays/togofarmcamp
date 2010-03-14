@@ -42,7 +42,7 @@ def csvinput(csv)
 end
 
 def csvdiff(old,new)
-  #oldのidのarrayを作る
+  #making array of old ID
   oldid = Array.new
   old.each_with_index{|elem,i|
    if i != 0
@@ -50,7 +50,7 @@ def csvdiff(old,new)
    end
   }
 
-  #diff判定
+  #diff
   insert = Array.new
   new.each{|newelem|
      status = 1
