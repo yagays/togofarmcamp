@@ -33,22 +33,6 @@ def checkHash(hash)
   }
 end
 
-#上を書き換えたのでcsvに吐き出す方法を変更する必要がある
-def csvoutput(list)
-  output = list.to_a
-
-CSV.generate("output.csv", ?,){|writer|
-  writer << ["作成日","動画タイトル","URL"]
-  output.each{|elem|
-#     pp elem
-#     pp elem[0]
-#     pp elem[1][0]
-#     pp elem[1][1]
-    writer << [elem[0], elem[1][0], elem[1][1]]
-  }
-}
-end
-
 def csvinput(csv)
   tmp = Array.new
   CSV.open(csv,"r"){|row|
@@ -58,24 +42,16 @@ def csvinput(csv)
 end
 
 def csvdiff(old,new)
-  #oldのidのmaxを求める
+  #oldのidのarrayを作る
   oldid = Array.new
   old.each_with_index{|elem,i|
    if i != 0
-#    xx  ? yy : zz
     oldid << elem[0].to_i
    end
   }
-# p oldid.max
 
-#  pp new[0]
-#  pp new[0][0]
-#  pp old[1]
-#  pp old[1][1]
-
-  insert = Array.new
   #diff判定
-
+  insert = Array.new
   new.each{|newelem|
      status = 1
      old.each{|oldelem|
@@ -86,7 +62,27 @@ def csvdiff(old,new)
   if status == 1
    insert <<  newelem
   end
-  pp status
   }
-  return insert
+
+  add = Array.new
+  sortinsert = insert.sort{|a,b| a[0].to_i <=> b[0].to_i}
+  sortinsert.each_with_index{|elem,i|
+    add << [(oldid.max+i+1).to_s, elem[0],elem[1][0],elem[1][1]]
+  }
+  return add
+end
+
+
+
+def csvoutput(base, new)
+  new.each{|elem|
+   base << elem
+  }
+
+  CSV.open("output.csv", "w") {|writer|
+    writer << ["ID","作成日","動画タイトル","URL"]
+    base.each{|elem|
+      writer << elem
+    }
+  }
 end

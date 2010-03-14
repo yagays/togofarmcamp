@@ -8,21 +8,22 @@ require 'crawler'
 require 'pp'
 
 doc = Hpricot(open("/Users/yag_ays/togofarmcamp/togotv.html"))
-
 csv = "/Users/yag_ays/togofarmcamp/togotv_shows.csv"
 
-
+#実行部分
 hash = crawler(doc)
-checkHash(hash)
-#csvoutput(hash)
 
-#pp hash.to_a
-#pp csvinput(csv)
+#making test data
+hash["2010-03-20"] = ["  test title20", "test url20"]
+hash["2010-03-22"] = ["  test title22", "test url22"]
+hash["2010-03-21"] = ["  test title21", "test url21"]
 
-#test data
-hash["2010-03-20"] = ["test title", "test url"]
-hash["2010-03-22"] = ["test title2", "test url2"]
-#pp hash.to_a
+
+#checkHash(hash)
 
 #arrayで入れる
-p csvdiff(csvinput(csv),hash.to_a)
+#pp csvdiff(csvinput(csv),hash.to_a) 
+csvoutput(csvinput(csv), csvdiff(csvinput(csv),hash.to_a))
+
+
+
