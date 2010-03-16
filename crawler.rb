@@ -40,7 +40,6 @@ def csvinput(csv)
   return tmp
 end
 
-
 def csvdiff(old,ins)
   #making array of old ID
   oldid = Array.new
@@ -49,10 +48,7 @@ def csvdiff(old,ins)
     oldid << elem[0].to_i
    end
   }
-#  pp new
-#  pp old
-#  p oldid
- 
+
   #diff
   insert = Array.new
   ins.each{|newelem|
@@ -66,7 +62,7 @@ def csvdiff(old,ins)
    insert <<  newelem
   end
   }
-  #
+
   add = Array.new
   sortinsert = insert.sort{|a,b| a[0].delete("-").to_i <=> b[0].delete("-").to_i}
   sortinsert.each_with_index{|elem,i|
@@ -75,13 +71,10 @@ def csvdiff(old,ins)
   return add
 end
 
-
-
 def csvoutput(base, add)
   add.each{|elem|
    base << elem
   }
-
   CSV.open("output.csv", "w") {|writer|
     writer << ["ID","作成日","タイトル","URL"]
     base.each{|elem|
