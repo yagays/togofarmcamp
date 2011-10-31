@@ -11,12 +11,12 @@ def crawler(doc)
   dbHash = Hash.new{|dbHash,key|dbHash[key] = []}
 
   #date
-  (doc/'h2 span.date').each_with_index {|elem,i| 
+  (doc/'h2 span.date').each_with_index {|elem,i|
     dateArray << elem.inner_text.gsub(/\s+/, "")
   }
 
   #title
-  (doc/'h3').each_with_index {|elem,i| 
+  (doc/'h3').each_with_index {|elem,i|
     title = elem.inner_text.toutf8.strip
     if title[0,1] == "_"
       dbHash[dateArray[i-3]] << title.gsub(/\[.*?\]/, "").delete("_")
